@@ -1,1 +1,38 @@
-<%= render 'form', recipe: @recipe %>
+<h1>New Recipe!!!! </h1>
+
+
+<%= form_for @recipe do |f| %>
+    <%= f.label :title%><br>
+    <%= f.text_field :title%><br><br>
+    <%= f.fields_for :ingredients do |ing|%>
+        <%= ing.label :ingredient_name %><br>
+        <%= ing.text_field :name%><br>
+        <%= ing.label :ingredient_quantity %><br>
+        <%= ing.text_field :quantity%><br><br>
+    <%end%>
+    <%= f.submit%>
+
+
+<%end%>
+
+
+
+
+<p>
+
+ create_table "ingredients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "recipe_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+</p>
+
